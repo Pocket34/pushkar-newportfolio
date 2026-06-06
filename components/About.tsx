@@ -78,9 +78,9 @@ export default function About() {
 
               {/* Metrics */}
               {[
-                { label: 'Problem Solving', value: 90 },
-                { label: 'Web Development', value: 85 },
-                { label: 'Teamwork', value: 88 },
+                { label: 'Problem Solving', value: 82 },
+                { label: 'Web Development', value: 80 },
+                { label: 'Teamwork', value: 85 },
               ].map(m => (
                 <div key={m.label} className="mb-4">
                   <div className="flex justify-between mb-1">
@@ -115,7 +115,7 @@ export default function About() {
             </h3>
 
             <p style={{ color: 'rgba(224,242,254,0.65)', lineHeight: '1.8', fontSize: '1.05rem' }}>
-              I am Pushkar Gupta, a Computer Science Engineering student passionate about software development, web development, and problem-solving. I enjoy creating modern applications and continuously learning new technologies.
+             I am Pushkar Gupta, a Computer Science Engineering student with a strong interest in software engineering, web development, and modern technologies. I enjoy building responsive applications and solving real-world problems through technology.
             </p>
 
             <p style={{ color: 'rgba(224,242,254,0.55)', lineHeight: '1.8', fontSize: '1rem' }}>
@@ -133,12 +133,12 @@ export default function About() {
                 {
                   icon: <Cpu size={18} />,
                   title: 'Academic Record',
-                  desc: '10th: 74.8% | 12th: 72.4%'
+                  desc: 'Computer Science Engineering Student | Continuous Learner'
                 },
                 {
                   icon: <Globe size={18} />,
                   title: 'Experience',
-                  desc: 'SIH 2025 Participant & Web Developer'
+                  desc: 'SIH 2025 Participant | React Developer | Problem Solver'
                 }
               ].map(f => (
                 <div key={f.title} className="flex gap-4 items-start">
