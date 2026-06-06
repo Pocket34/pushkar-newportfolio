@@ -2,10 +2,10 @@ import { useEffect, useState, useRef } from 'react';
 import { ChevronDown, Play, Zap } from 'lucide-react';
 
 const TYPING_STRINGS = [
-  'git statusReact Developer',
+  'SOFTWARE ENGINEER',
   'CSE STUDENT',
-  'SIH PARTICIPANT',
-  'FULL STACK DEVELOPER',
+  'SIH 2025 PARTICIPANT',
+  'FULL STACK DEVELOPER'
 ];
 
 export default function Hero() {
