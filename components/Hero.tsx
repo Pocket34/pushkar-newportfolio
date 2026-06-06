@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { ChevronDown, Play, Zap } from 'lucide-react';
 
 const TYPING_STRINGS = [
-  'SOFTWARE ENGINEER',
+  'git statusReact Developer',
   'CSE STUDENT',
   'SIH PARTICIPANT',
   'FULL STACK DEVELOPER',
