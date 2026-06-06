@@ -1,33 +1,39 @@
 import { Target, Lightbulb, Zap, BookOpen } from 'lucide-react';
 
 const TECH_STACK = [
-  'React 18', 'TypeScript', 'Tailwind CSS', 'Vite',
-  'HTML5 Canvas', 'SVG Graphics', 'WebGL', 'GitHub'
+  'React',
+  'TypeScript',
+  'Java',
+  'C++',
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'GitHub'
 ];
 
 const JOURNEY_STEPS = [
   {
-    phase: 'Started Learning',
-    time: '2025',
-    desc: 'Started exploring programming and web development fundamentals.',
+    phase: 'Started Coding',
+    time: '2024',
+    desc: 'Started learning programming fundamentals and problem solving.',
     color: '#00d4ff',
   },
   {
-    phase: 'Design',
-    time: 'Q1 2026',
-    desc: 'Crafted futuristic UI with glassmorphism, neon effects, and particle systems.',
+    phase: 'Web Development',
+    time: '2025',
+    desc: 'Learned HTML, CSS, JavaScript and React development.',
     color: '#00e5ff',
   },
   {
-    phase: 'Development',
-    time: 'Q2 2026',
-    desc: 'Built interactive components with real-time animations and scroll-triggered reveals.',
+    phase: 'SIH 2025',
+    time: '2025',
+    desc: 'Participated in Smart India Hackathon and worked in a team environment.',
     color: '#26c6da',
   },
   {
-    phase: 'Launch',
+    phase: 'CSE Journey',
     time: '2026',
-    desc: 'Deployed fully responsive landing page showcasing AI and cyborg future vision.',
+    desc: 'Continuing engineering studies while building real-world projects.',
     color: '#4dd0e1',
   },
 ];
@@ -49,7 +55,7 @@ export default function CreatorProfile() {
             MY JOURNEY
           </h2>
           <p className="max-w-2xl mx-auto" style={{ color: 'rgba(224,242,254,0.55)', fontSize: '1.05rem' }}>
-            Computer Science Engineering student passionate about web development, software engineering, and building impactful digital solutions.
+            I am a Computer Science Engineering student passionate about software development, web technologies and problem solving. My goal is to build impactful applications, contribute to innovative projects and grow into a professional software engineer.
           </p>
           <div className="neon-line max-w-xs mx-auto mt-4" />
         </div>
@@ -202,9 +208,7 @@ export default function CreatorProfile() {
                 Why These Technologies?
               </h4>
               <p className="text-sm leading-relaxed" style={{ color: 'rgba(224,242,254,0.55)', fontFamily: 'Rajdhani' }}>
-                React provides a performant, component-driven architecture. TypeScript ensures type safety at scale.
-                Tailwind CSS enables rapid, responsive design. Vite delivers blazing-fast builds. Canvas and SVG power
-                real-time visual effects. Together, they create a seamless, future-ready experience.
+                I use React and TypeScript for modern frontend development, Java and C++ for programming fundamentals, and GitHub for version control. These technologies help me build efficient, scalable and user-friendly applications.
               </p>
             </div>
           </div>
