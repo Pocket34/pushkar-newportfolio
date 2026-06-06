@@ -10,7 +10,7 @@ export default function Contact() {
     { icon: Instagram, label: 'Instagram', href: 'https://instagram.com/pushkaarrrr_lyf', color: '#E4405F' },
     { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/pushkar-gupta-770875282', color: '#0077B5' },
     { icon: Github, label: 'GitHub', href: 'https://github.com/Pocket34', color: '#FFFFFF' },
-    { icon: Mail, label: 'Email', href: 'mailto:contact@pushkargupta.dev', color: '#EA4335' },
+    { icon: Mail, label: 'Email', href: 'mailto:contact@pushkargupta898@gmail.com', color: '#EA4335' },
   ];
 
   const handleSubmit = (e: FormEvent) => {
@@ -40,7 +40,7 @@ export default function Contact() {
             CONNECT WITH PUSHKAR
           </h2>
           <p className="max-w-xl mx-auto" style={{ color: 'rgba(224,242,254,0.55)' }}>
-            Reach out through social media or send a message directly
+           Connect with me through GitHub, LinkedIn, Instagram or Email.
           </p>
           <div className="neon-line max-w-xs mx-auto mt-4" />
         </div>
@@ -58,9 +58,9 @@ export default function Contact() {
             </div>
 
             {[
-              { icon: <MapPin size={16} />, label: 'Location', value: 'India' },
-              { icon: <Mail size={16} />, label: 'Email', value: 'contact@pushkargupta.dev' },
-              { icon: <Phone size={16} />, label: 'Comms Link', value: '+91 XXXXXXXXXX' },
+              { icon: <MapPin size={16} />, label: 'Location', value: 'Aligarh Uttarpradesh India' },
+              { icon: <Mail size={16} />, label: 'Email', value: 'contact@pushkargupta898@gmail.com' },
+              { icon: <Phone size={16} />, label: 'Comms Link', value: '+919837114441' },
             ].map(item => (
               <div key={item.label} className="glass-card rounded-xl p-4 flex items-start gap-4">
                 <div
@@ -119,7 +119,7 @@ export default function Contact() {
                           {social.label}
                         </div>
                         <div className="font-mono-tech text-xs" style={{ color: 'rgba(0,212,255,0.5)' }}>
-                          {social.label === 'Email' ? 'contact@pushkargupta.dev' : `@${social.label.toLowerCase()}`}
+                          {social.label === 'Email' ? 'contact@pushkargupta8982gmail.com' : `@${social.label.toLowerCase()}`}
                         </div>
                       </div>
                       <div
