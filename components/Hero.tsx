@@ -1,9 +1,19 @@
-import { useEffect, useState, useRef } from 'react';
-import { ChevronDown, Play, Zap } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+  Play,
+  Sparkles,
+  Trophy,
+  Zap,
+} from 'lucide-react';
 
 const TYPING_STRINGS = [
-  'CSE STUDENT',
   'SOFTWARE DEVELOPER',
+  'CSE STUDENT',
   'SIH 2025 PARTICIPANT',
   'WEB DEVELOPER',
 ];
@@ -13,720 +23,452 @@ export default function Hero() {
   const [strIdx, setStrIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+
+  /* ---------------- TYPING EFFECT ---------------- */
 
   useEffect(() => {
-    const current = TYPING_STRINGS[strIdx];
+    const currentString = TYPING_STRINGS[strIdx];
 
-    const timeout = setTimeout(() => {
+    const typingSpeed = deleting ? 45 : 85;
+
+    const timer = setTimeout(() => {
       if (!deleting) {
-        if (charIdx < current.length) {
-          setTypedText(current.slice(0, charIdx + 1));
-          setCharIdx((c) => c + 1);
-        } else {
-          setTimeout(() => setDeleting(true), 1800);
+        const nextText = currentString.slice(0, charIdx + 1);
+        setTypedText(nextText);
+        setCharIdx(charIdx + 1);
+
+        if (charIdx + 1 === currentString.length) {
+          setTimeout(() => setDeleting(true), 1200);
         }
       } else {
-        if (charIdx > 0) {
-          setTypedText(current.slice(0, charIdx - 1));
-          setCharIdx((c) => c - 1);
-        } else {
+        const nextText = currentString.slice(0, charIdx - 1);
+        setTypedText(nextText);
+        setCharIdx(charIdx - 1);
+
+        if (charIdx - 1 === 0) {
           setDeleting(false);
-          setStrIdx((s) => (s + 1) % TYPING_STRINGS.length);
+          setStrIdx((prev) => (prev + 1) % TYPING_STRINGS.length);
         }
       }
-    }, deleting ? 60 : 90);
+    }, typingSpeed);
 
-    return () => clearTimeout(timeout);
+    return () => clearTimeout(timer);
   }, [charIdx, deleting, strIdx]);
+
+  /* ---------------- SCROLL ---------------- */
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <section
-      ref={containerRef}
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: 'var(--dark-bg)' }}
+      id="home"
+      className="relative min-h-screen overflow-hidden flex items-center bg-[#07090d]"
     >
-      {/* Animated gradient background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,100,200,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,212,255,0.06) 0%, transparent 50%), radial-gradient(ellipse 50% 40% at 20% 60%, rgba(0,80,160,0.08) 0%, transparent 50%)',
-        }}
-      />
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
 
-      {/* Grid */}
-      <div className="absolute inset-0 cyber-grid" />
-
-      {/* Scan line */}
-      <div className="absolute inset-0 scanline pointer-events-none" />
-
-      {/* Horizontal neon lines */}
-      {[15, 35, 65, 85].map((pct) => (
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Cyber grid */}
         <div
-          key={pct}
-          className="absolute w-full opacity-20"
+          className="absolute inset-0 opacity-[0.14]"
           style={{
-            top: `${pct}%`,
-            height: '1px',
-            background:
-              'linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.4) 30%, rgba(0,255,240,0.6) 50%, rgba(0,212,255,0.4) 70%, transparent 100%)',
+            backgroundImage: `
+              linear-gradient(rgba(0,140,255,0.35) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,140,255,0.35) 1px, transparent 1px)
+            `,
+            backgroundSize: '55px 55px',
           }}
         />
-      ))}
 
-      {/* Data streams */}
-      {[5, 15, 85, 92].map((left, i) => (
+        {/* Radial glow */}
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px]" />
+
+        <div className="absolute top-1/3 right-0 w-[450px] h-[450px] rounded-full bg-cyan-500/10 blur-[130px]" />
+
+        {/* Scanlines */}
         <div
-          key={i}
-          className="data-stream absolute top-0"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            left: `${left}%`,
-            animationDelay: `${i * 1.5}s`,
-            animationDuration: `${7 + i}s`,
+            backgroundImage:
+              'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.25) 4px)',
           }}
-        >
-          {Array.from({ length: 20 }, () =>
-            String.fromCharCode(
-              0x30a0 + Math.floor(Math.random() * 96)
-            )
-          ).join('')}
-        </div>
-      ))}
+        />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Horizontal neon lines */}
+        <div className="absolute top-[18%] left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+        <div className="absolute top-[78%] left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
+      </div>
 
-        {/* LEFT: TEXT */}
-        <div className="text-center lg:text-left">
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 mb-6">
-            <div
-              className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"
-              style={{ boxShadow: '0 0 8px var(--neon-cyan)' }}
-            />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-28">
+        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-8 items-center">
 
-            <span className="cyber-badge">
-              PUSHKAR GUPTA // COMPUTER SCIENCE ENGINEERING
-            </span>
+          {/* =================================================
+              LEFT SIDE
+          ================================================= */}
 
-            <div
-              className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"
-              style={{ boxShadow: '0 0 8px var(--neon-cyan)' }}
-            />
-          </div>
+          <div className="relative">
 
-          {/* Main title */}
-          <h1
-            className="font-orbitron font-black mb-4 leading-none"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)' }}
-          >
-            <span
-              style={{
-                color: 'var(--neon-blue)',
-                textShadow:
-                  '0 0 15px var(--neon-blue), 0 0 40px rgba(0,212,255,0.4)',
-                display: 'block',
-              }}
-            >
-              PUSHKAR
-            </span>
+            {/* Top badge */}
+            <div className="inline-flex items-center gap-3 px-4 py-2 mb-7 rounded-full border border-blue-500/30 bg-blue-500/[0.07] backdrop-blur-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan-400" />
+              </span>
 
-            <span
-              style={{
-                color: 'var(--neon-cyan)',
-                textShadow:
-                  '0 0 15px var(--neon-cyan), 0 0 40px rgba(0,255,240,0.4)',
-                display: 'block',
-              }}
-            >
-              GUPTA
-            </span>
+              <span className="font-mono text-[11px] sm:text-xs tracking-[0.18em] text-blue-300">
+                AVAILABLE FOR OPPORTUNITIES
+              </span>
+            </div>
 
-            <span
-              className="gradient-text"
-              style={{ display: 'block' }}
-            >
-              CSE
-            </span>
-          </h1>
+            {/* Small intro */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-10 bg-cyan-400" />
 
-          {/* Typing animation */}
-          <div className="mb-6 h-8 flex items-center justify-center lg:justify-start">
-            <span
-              className="font-mono-tech text-sm md:text-base"
-              style={{ color: 'rgba(0,212,255,0.6)' }}
-            >
-              &gt;&nbsp;
-            </span>
+              <span className="font-mono text-xs sm:text-sm tracking-[0.25em] text-cyan-400">
+                HELLO, I'M
+              </span>
+            </div>
 
-            <span
-              className="font-orbitron text-sm md:text-base typing-cursor"
-              style={{
-                color: 'var(--neon-cyan)',
-                textShadow: '0 0 8px var(--neon-cyan)',
-              }}
-            >
-              {typedText}
-            </span>
-          </div>
+            {/* Name */}
+            <h1 className="leading-[0.82] tracking-[-0.04em] mb-7">
+              <span className="block text-5xl sm:text-7xl lg:text-8xl font-black text-white">
+                PUSHKAR
+              </span>
 
-          {/* Subtitle */}
-          <p
-            className="text-base md:text-lg mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-            style={{
-              color: 'rgba(224,242,254,0.6)',
-              fontFamily: 'Rajdhani, sans-serif',
-              fontWeight: 400,
-            }}
-          >
-            Computer Science Engineering student passionate about
-            software development, web technologies, and problem solving.
-            I enjoy building modern applications, learning new
-            technologies, and participating in hackathons.
-          </p>
+              <span
+                className="block text-5xl sm:text-7xl lg:text-8xl font-black"
+                style={{
+                  color: 'transparent',
+                  WebkitTextStroke: '1px rgba(80,170,255,0.9)',
+                }}
+              >
+                GUPTA
+              </span>
+            </h1>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+            {/* Typing role */}
+            <div className="flex items-center min-h-[45px] mb-6">
+              <span className="text-cyan-400 font-mono text-sm sm:text-base mr-3">
+                &gt;_
+              </span>
 
-            <button
-              className="btn-neon-solid flex items-center gap-2"
-              onClick={() =>
-                document
-                  .querySelector('#features')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              <Zap size={14} />
-              View Projects
-            </button>
+              <span className="font-mono text-lg sm:text-2xl font-bold text-blue-300 tracking-wider">
+                {typedText}
+              </span>
 
-            <button
-              className="btn-neon flex items-center gap-2"
-              onClick={() =>
-                document
-                  .querySelector('#contact')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              <Play size={14} />
-              Contact Me
-            </button>
+              <span className="ml-1 h-6 w-[2px] bg-cyan-400 animate-pulse" />
+            </div>
 
-            <a
-              href="https://github.com/Pocket34/pushkar-newportfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-neon"
-            >
-              GitHub
-            </a>
+            {/* Description */}
+            <p className="max-w-2xl text-gray-400 text-sm sm:text-base lg:text-lg leading-7 mb-8">
+              Computer Science Engineering student passionate about
+              <span className="text-gray-200"> software development</span>,
+              <span className="text-gray-200"> web technologies</span> and
+              <span className="text-gray-200"> innovative problem solving</span>.
+              I enjoy building modern applications and turning ideas into
+              practical digital experiences.
+            </p>
 
-            <button
-              className="btn-neon"
-              onClick={() =>
-                document
-                  .querySelector('#timeline')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-            >
-              My Journey
-            </button>
+            {/* =================================================
+                SIH CARD
+            ================================================= */}
 
-          </div>
+            <div className="group relative max-w-xl mb-8">
+              <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-blue-500/50 via-cyan-400/30 to-transparent opacity-70" />
 
-          {/* Stats row */}
-          <div className="flex gap-8 mt-10 justify-center lg:justify-start">
+              <div className="relative rounded-2xl bg-[#0b1018]/95 border border-blue-500/20 p-4 sm:p-5 backdrop-blur-xl">
+                <div className="flex items-start gap-4">
 
-            {[
-              { v: '2+', l: 'PROJECTS' },
-              { v: 'SIH 2025', l: 'PARTICIPANT' },
-              { v: '2025', l: 'B.E. STARTED' },
-            ].map((stat) => (
-              <div key={stat.l}>
+                  {/* Icon */}
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 border border-blue-400/30 flex items-center justify-center">
+                    <Trophy className="w-6 h-6 text-cyan-400" />
+                  </div>
 
-                <div
-                  className="font-orbitron text-lg font-bold"
-                  style={{
-                    color: 'var(--neon-cyan)',
-                    textShadow: '0 0 10px var(--neon-cyan)',
-                  }}
-                >
-                  {stat.v}
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] text-cyan-400">
+                        ACHIEVEMENT
+                      </span>
+
+                      <span className="h-1 w-1 rounded-full bg-blue-400" />
+
+                      <span className="font-mono text-[10px] sm:text-xs text-gray-500">
+                        2025
+                      </span>
+                    </div>
+
+                    <h3 className="text-white font-bold text-base sm:text-lg">
+                      Smart India Hackathon
+                    </h3>
+
+                    <p className="text-gray-500 text-xs sm:text-sm mt-1">
+                      Participated in SIH 2025 • Teamwork • Innovation •
+                      Problem Solving
+                    </p>
+                  </div>
+
+                  <Sparkles className="hidden sm:block ml-auto w-5 h-5 text-blue-400/70" />
                 </div>
-
-                <div
-                  className="text-xs"
-                  style={{
-                    color: 'rgba(224,242,254,0.4)',
-                    fontFamily: 'Rajdhani',
-                  }}
-                >
-                  {stat.l}
-                </div>
-
               </div>
-            ))}
+            </div>
+
+            {/* =================================================
+                BUTTONS
+            ================================================= */}
+
+            <div className="flex flex-wrap gap-3 mb-8">
+
+              {/* Projects */}
+              <button
+                onClick={() => scrollTo('features')}
+                className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-500 hover:bg-blue-400 text-white font-semibold text-sm transition-all duration-300 shadow-lg shadow-blue-500/20"
+              >
+                <Play className="w-4 h-4 fill-current" />
+                View Projects
+
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
+
+              {/* Contact */}
+              <button
+                onClick={() => scrollTo('contact')}
+                className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-blue-500/30 bg-blue-500/[0.05] hover:bg-blue-500/10 text-blue-300 font-semibold text-sm transition-all duration-300"
+              >
+                <Mail className="w-4 h-4" />
+                Contact Me
+              </button>
+            </div>
+
+            {/* =================================================
+                SOCIAL LINKS
+            ================================================= */}
+
+            <div className="flex items-center gap-3">
+
+              <a
+                href="https://github.com/Pocket34/pushkar-newportfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="w-10 h-10 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center text-gray-400 hover:text-white hover:border-blue-400/50 hover:bg-blue-500/10 transition-all"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-blue-400/50 hover:bg-blue-500/10 transition-all"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+
+              <div className="h-6 w-px bg-white/10 mx-1" />
+
+              <span className="font-mono text-[10px] tracking-widest text-gray-600">
+                CSE • 2026
+              </span>
+            </div>
+          </div>
+
+          {/* =================================================
+              RIGHT SIDE — FUTURISTIC HUD
+          ================================================= */}
+
+          <div className="relative hidden lg:flex justify-center items-center min-h-[600px]">
+
+            {/* Outer rings */}
+            <div className="absolute w-[480px] h-[480px] rounded-full border border-blue-500/10 animate-[spin_30s_linear_infinite]" />
+
+            <div
+              className="absolute w-[390px] h-[390px] rounded-full border border-cyan-400/10 animate-[spin_20s_linear_infinite_reverse]"
+            />
+
+            <div className="absolute w-[310px] h-[310px] rounded-full border border-blue-500/20" />
+
+            {/* Orbit dots */}
+            <div className="absolute w-[480px] h-[480px] animate-[spin_15s_linear_infinite]">
+              <div className="absolute -top-1 left-1/2 w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_20px_#22d3ee]" />
+            </div>
+
+            {/* Main HUD */}
+            <div className="relative w-[350px] h-[470px]">
+
+              {/* Glow */}
+              <div className="absolute inset-10 rounded-full bg-blue-500/10 blur-[70px]" />
+
+              {/* Top HUD */}
+              <div className="absolute top-0 left-0 right-0 flex justify-between items-center">
+                <div className="font-mono text-[9px] tracking-[0.2em] text-blue-400">
+                  SYSTEM // 01
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_10px_#4ade80]" />
+                  <span className="font-mono text-[9px] text-green-400">
+                    ONLINE
+                  </span>
+                </div>
+              </div>
+
+              {/* Robot */}
+              <div className="absolute inset-0 flex items-center justify-center">
+
+                <div className="relative w-60 h-72">
+
+                  {/* Head */}
+                  <div className="absolute top-5 left-1/2 -translate-x-1/2 w-32 h-24 rounded-[28px] border border-cyan-400/60 bg-[#0b1724] shadow-[0_0_40px_rgba(34,211,238,0.15)]">
+
+                    <div className="absolute inset-3 rounded-[20px] border border-blue-500/20 bg-[#071019]" />
+
+                    {/* Eyes */}
+                    <div className="absolute top-9 left-8 w-5 h-2 rounded-full bg-cyan-400 shadow-[0_0_14px_#22d3ee]" />
+                    <div className="absolute top-9 right-8 w-5 h-2 rounded-full bg-cyan-400 shadow-[0_0_14px_#22d3ee]" />
+
+                    {/* Mouth */}
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-12 h-1 rounded-full bg-blue-400/60" />
+                  </div>
+
+                  {/* Antenna */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-7 bg-cyan-400/70" />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_12px_#22d3ee]" />
+
+                  {/* Neck */}
+                  <div className="absolute top-[112px] left-1/2 -translate-x-1/2 w-10 h-8 border-x border-cyan-400/30 bg-blue-500/10" />
+
+                  {/* Body */}
+                  <div className="absolute top-[135px] left-1/2 -translate-x-1/2 w-40 h-32 rounded-[35px] border border-blue-400/50 bg-[#0a1521]">
+
+                    <div className="absolute top-7 left-1/2 -translate-x-1/2 w-20 h-14 rounded-xl border border-cyan-400/30 bg-[#071019] flex items-center justify-center">
+                      <Zap className="w-7 h-7 text-cyan-400 animate-pulse" />
+                    </div>
+
+                    <div className="absolute bottom-4 left-5 right-5 flex justify-between">
+                      <span className="w-8 h-1 rounded-full bg-blue-400/30" />
+                      <span className="w-8 h-1 rounded-full bg-cyan-400/30" />
+                    </div>
+                  </div>
+
+                  {/* Left arm */}
+                  <div className="absolute top-[145px] left-0 w-9 h-28 rounded-full border border-blue-400/40 bg-[#0a1521] rotate-[8deg]" />
+
+                  {/* Right arm */}
+                  <div className="absolute top-[145px] right-0 w-9 h-28 rounded-full border border-blue-400/40 bg-[#0a1521] -rotate-[8deg]" />
+
+                  {/* Legs */}
+                  <div className="absolute bottom-0 left-[55px] w-12 h-28 rounded-b-3xl border border-blue-400/40 bg-[#0a1521]" />
+
+                  <div className="absolute bottom-0 right-[55px] w-12 h-28 rounded-b-3xl border border-blue-400/40 bg-[#0a1521]" />
+                </div>
+              </div>
+
+              {/* Left HUD info */}
+              <div className="absolute left-0 top-[170px] font-mono text-[9px] leading-5 text-gray-600">
+                <div className="text-cyan-400">PUSHKAR</div>
+                <div>STATUS: ACTIVE</div>
+                <div>MODE: BUILD</div>
+                <div>CORE: CSE</div>
+              </div>
+
+              {/* Right HUD info */}
+              <div className="absolute right-0 top-[170px] font-mono text-[9px] leading-5 text-gray-600 text-right">
+                <div className="text-blue-400">SIH_2025</div>
+                <div>TEAMWORK</div>
+                <div>INNOVATION</div>
+                <div>PROBLEM_SOLVING</div>
+              </div>
+
+              {/* Bottom */}
+              <div className="absolute bottom-0 left-0 right-0 flex justify-between">
+                <div>
+                  <div className="font-mono text-[8px] text-gray-600">
+                    VERSION
+                  </div>
+                  <div className="font-mono text-xs text-blue-300">
+                    2.0.26
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <div className="font-mono text-[8px] text-gray-600">
+                    BUILD
+                  </div>
+                  <div className="font-mono text-xs text-cyan-300">
+                    PUSHKAR.EXE
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =================================================
+            BOTTOM STATS
+        ================================================= */}
+
+        <div className="mt-16 lg:mt-12 pt-7 border-t border-white/[0.07]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-white">
+                2+
+              </div>
+              <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] text-gray-600 mt-1">
+                PROJECTS
+              </div>
+            </div>
+
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-cyan-400">
+                SIH
+              </div>
+              <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] text-gray-600 mt-1">
+                2025 PARTICIPANT
+              </div>
+            </div>
+
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-white">
+                CSE
+              </div>
+              <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] text-gray-600 mt-1">
+                COMPUTER SCIENCE
+              </div>
+            </div>
+
+            <div>
+              <div className="text-2xl sm:text-3xl font-black text-blue-400">
+                2026
+              </div>
+              <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] text-gray-600 mt-1">
+                GRADUATION
+              </div>
+            </div>
 
           </div>
         </div>
 
-        {/* RIGHT: ROBOT */}
-        <div className="flex items-center justify-center relative">
+        {/* Scroll indicator */}
+        <button
+          onClick={() => scrollTo('features')}
+          className="absolute bottom-5 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-gray-600 hover:text-cyan-400 transition-colors"
+        >
+          <span className="font-mono text-[8px] tracking-[0.3em]">
+            SCROLL
+          </span>
 
-          {/* Orbital rings */}
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                width: `${220 + i * 80}px`,
-                height: `${220 + i * 80}px`,
-                border: `1px solid rgba(0,212,255,${0.15 - i * 0.03})`,
-                animation: `radarScan ${6 + i * 4}s linear infinite ${
-                  i % 2 === 0 ? 'reverse' : ''
-                }`,
-              }}
-            />
-          ))}
-
-          {/* Pulse rings */}
-          {[1, 2].map((i) => (
-            <div
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                width: '180px',
-                height: '180px',
-                border: '1.5px solid rgba(0,212,255,0.3)',
-                animation: `pulseRing ${
-                  2 + i * 0.5
-                }s ease-out ${i * 0.7}s infinite`,
-              }}
-            />
-          ))}
-
-          {/* Robot container */}
-          <div
-            className="relative float-animation"
-            style={{ width: '320px', height: '420px' }}
-          >
-
-            {/* Glow */}
-            <div
-              className="absolute inset-x-0 bottom-0 h-24 rounded-full blur-3xl"
-              style={{ background: 'rgba(0,212,255,0.2)' }}
-            />
-
-            {/* SVG Robot */}
-            <svg
-              viewBox="0 0 320 420"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-full robot-glow"
-              aria-label="Futuristic humanoid robot"
-            >
-
-              <defs>
-
-                <linearGradient
-                  id="bodyGrad"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#003a5c" />
-                  <stop offset="50%" stopColor="#001a3a" />
-                  <stop offset="100%" stopColor="#000d20" />
-                </linearGradient>
-
-                <linearGradient
-                  id="faceGrad"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#004a6e" />
-                  <stop offset="100%" stopColor="#001525" />
-                </linearGradient>
-
-                <linearGradient
-                  id="glowGrad"
-                  x1="0%"
-                  y1="0%"
-                  x2="0%"
-                  y2="100%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="#00d4ff"
-                    stopOpacity="0.8"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="#00fff0"
-                    stopOpacity="0.4"
-                  />
-                </linearGradient>
-
-                <filter id="glow">
-                  <feGaussianBlur
-                    stdDeviation="3"
-                    result="coloredBlur"
-                  />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-
-                <filter id="strongGlow">
-                  <feGaussianBlur
-                    stdDeviation="6"
-                    result="coloredBlur"
-                  />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-
-              </defs>
-
-              {/* NECK */}
-              <rect
-                x="144"
-                y="148"
-                width="32"
-                height="28"
-                rx="4"
-                fill="url(#bodyGrad)"
-                stroke="#00d4ff"
-                strokeWidth="0.5"
-              />
-              <rect
-                x="150"
-                y="152"
-                width="20"
-                height="4"
-                rx="2"
-                fill="#00d4ff"
-                opacity="0.4"
-              />
-              <rect
-                x="150"
-                y="162"
-                width="20"
-                height="4"
-                rx="2"
-                fill="#00d4ff"
-                opacity="0.4"
-              />
-
-              {/* HEAD */}
-              <rect
-                x="100"
-                y="60"
-                width="120"
-                height="92"
-                rx="18"
-                fill="url(#faceGrad)"
-                stroke="#00d4ff"
-                strokeWidth="1"
-              />
-
-              <rect
-                x="88"
-                y="75"
-                width="14"
-                height="50"
-                rx="5"
-                fill="url(#bodyGrad)"
-                stroke="#00d4ff"
-                strokeWidth="0.5"
-              />
-
-              <rect
-                x="218"
-                y="75"
-                width="14"
-                height="50"
-                rx="5"
-                fill="url(#bodyGrad)"
-                stroke="#00d4ff"
-                strokeWidth="0.5"
-              />
-
-              {/* Ear details */}
-              <circle
-                cx="92"
-                cy="95"
-                r="4"
-                fill="#00d4ff"
-                filter="url(#glow)"
-                opacity="0.8"
-              />
-
-              <circle
-                cx="228"
-                cy="95"
-                r="4"
-                fill="#00d4ff"
-                filter="url(#glow)"
-                opacity="0.8"
-              />
-
-              {/* VISOR */}
-              <rect
-                x="108"
-                y="78"
-                width="104"
-                height="36"
-                rx="10"
-                fill="#000d1f"
-                stroke="#00d4ff"
-                strokeWidth="1"
-              />
-
-              <rect
-                x="110"
-                y="80"
-                width="100"
-                height="32"
-                rx="8"
-                fill="url(#glowGrad)"
-                opacity="0.1"
-              />
-
-              {/* Eyes */}
-              <ellipse
-                cx="143"
-                cy="96"
-                rx="14"
-                ry="10"
-                fill="#000a18"
-              />
-
-              <ellipse
-                cx="143"
-                cy="96"
-                rx="10"
-                ry="7"
-                fill="#00d4ff"
-                filter="url(#strongGlow)"
-                opacity="0.9"
-              />
-
-              <ellipse
-                cx="143"
-                cy="96"
-                rx="5"
-                ry="4"
-                fill="#00fff0"
-              />
-
-              <ellipse
-                cx="143"
-                cy="96"
-                rx="2"
-                ry="2"
-                fill="white"
-              />
-
-              <ellipse
-                cx="177"
-                cy="96"
-                rx="14"
-                ry="10"
-                fill="#000a18"
-              />
-
-              <ellipse
-                cx="177"
-                cy="96"
-                rx="10"
-                ry="7"
-                fill="#00d4ff"
-                filter="url(#strongGlow)"
-                opacity="0.9"
-              />
-
-              <ellipse
-                cx="177"
-                cy="96"
-                rx="5"
-                ry="4"
-                fill="#00fff0"
-              />
-
-              <ellipse
-                cx="177"
-                cy="96"
-                rx="2"
-                ry="2"
-                fill="white"
-              />
-
-              {/* Scan line */}
-              <rect
-                x="110"
-                y="93"
-                width="100"
-                height="1.5"
-                fill="#00fff0"
-                opacity="0.4"
-                filter="url(#glow)"
-              />
-
-              {/* Lower face */}
-              <rect
-                x="118"
-                y="122"
-                width="84"
-                height="24"
-                rx="8"
-                fill="#001828"
-                stroke="#00d4ff"
-                strokeWidth="0.5"
-              />
-
-              {[0, 1, 2, 3, 4].map((i) => (
-                <rect
-                  key={i}
-                  x={126 + i * 14}
-                  y="128"
-                  width="6"
-                  height="12"
-                  rx="2"
-                  fill="#00d4ff"
-                  opacity="0.3"
-                />
-              ))}
-
-              {/* Head top */}
-              <rect
-                x="135"
-                y="60"
-                width="50"
-                height="10"
-                rx="4"
-                fill="url(#bodyGrad)"
-                stroke="#00d4ff"
-                strokeWidth="0.5"
-              />
-
-              <rect
-                x="148"
-                y="62"
-                width="24"
-                height="2"
-                rx="1"
-                fill="#00d4ff"
-                opacity="0.5"
-              />
-
-              {/* TORSO */}
-              <rect
-                x="86"
-                y="176"
-                width="148"
-                height="120"
-                rx="16"
-                fill="url(#bodyGrad)"
-                stroke="#00d4ff"
-                strokeWidth="1"
-              />
-
-              <rect
-                x="120"
-                y="186"
-                width="80"
-                height="70"
-                rx="10"
-                fill="#000d1f"
-                stroke="#00d4ff"
-                strokeWidth="0.5"
-              />
-
-              {/* Power core */}
-              <circle
-                cx="160"
-                cy="218"
-                r="22"
-                fill="#000a18"
-                stroke="#00d4ff"
-                strokeWidth="1"
-              />
-
-              <circle
-                cx="160"
-                cy="218"
-                r="16"
-                fill="#001a30"
-                stroke="#00d4ff"
-                strokeWidth="0.5"
-              />
-
-              <circle
-                cx="160"
-                cy="218"
-                r="10"
-                fill="#003a5c"
-              />
-
-              <circle
-                cx="160"
-                cy="218"
-                r="7"
-                fill="#00d4ff"
-                filter="url(#strongGlow)"
-                opacity="0.8"
-              />
-
-              <circle
-                cx="160"
-                cy="218"
-                r="4"
-                fill="#00fff0"
-              />
-
-              {/* Chest lines */}
-              {[0, 1, 2].map((i) => (
-                <rect
-                  key={i}
-                  x="106"
-                  y={188 + i * 14}
-                  width="10"
-                  height="2"
-                  rx="1"
-                  fill="#00d4ff"
-                  opacity="0.5"
-                />
-              ))}
-
-              {[0, 1, 2].map((i) => (
-                <rect
-                  key={i}
-                  x="204"
-                  y={188 + i * 14}
-                  width="10"
-                  height="2"
-                  rx="1"
-                  fill="#00d4ff"
-                  opacity="0.5"
-                />
-              ))}
-
-              {/* Chest vents */}
-              {[0, 1, 2].map((i) => (
-                <rect
-                  key={i}
-                  x={130 + i * 20}
-                  y="265"
-                  width="12"
-                  height="6"
-                  rx="2"
-                  fill
+          <ArrowDown className="w-4 h-4 animate-bounce" />
+        </button>
+      </div>
+    </section>
+  );
+}
