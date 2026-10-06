@@ -1,144 +1,376 @@
-import { Eye, Zap, Lock, Radio, Waves, Fingerprint, ChevronRight, Layers } from 'lucide-react';
+import {
+  Code2,
+  Database,
+  GitBranch,
+  Globe,
+  Layers,
+  Terminal,
+  Trophy,
+  Cpu,
+  ArrowUpRight,
+  Sparkles,
+} from 'lucide-react';
 
-const FEATURES = [
+const SKILLS = [
   {
-    icon: <Eye size={24} />,
-    title: 'React Development',
-    desc: 'Building modern responsive web applications using React and TypeScript.',
-    badge: 'REACT',
+    icon: <Code2 size={24} />,
+    title: 'React + TypeScript',
+    desc: 'Building modern, responsive and interactive web interfaces with React and TypeScript.',
+    badge: 'FRONTEND',
+    level: 'CORE',
   },
   {
-    icon: <Zap size={24} />,
-    title: 'Java Programming',
-    desc: 'Strong understanding of OOP concepts, data structures and algorithms.',
-    badge: 'JAVA',
+    icon: <Globe size={24} />,
+    title: 'HTML / CSS / JS',
+    desc: 'Creating responsive layouts, animations and user-friendly frontend experiences.',
+    badge: 'WEB',
+    level: 'CORE',
   },
   {
-    icon: <Lock size={24} />,
-    title: 'Frontend Design',
-    desc: 'Creating attractive user interfaces with HTML, CSS and JavaScript.',
-    badge: 'UI',
+    icon: <Terminal size={24} />,
+    title: 'Java',
+    desc: 'Object-oriented programming, logical problem solving and programming fundamentals.',
+    badge: 'PROGRAMMING',
+    level: 'LEARNING',
   },
   {
-    icon: <Radio size={24} />,
-    title: 'Hackathon Experience',
-    desc: 'Participated in Smart India Hackathon and collaborative projects.',
-    badge: 'SIH',
+    icon: <Cpu size={24} />,
+    title: 'C Programming',
+    desc: 'Understanding programming fundamentals, arrays, functions, pointers and problem solving.',
+    badge: 'FUNDAMENTALS',
+    level: 'CORE',
   },
   {
-    icon: <Waves size={24} />,
+    icon: <GitBranch size={24} />,
     title: 'Git & GitHub',
-    desc: 'Version control, collaboration and project deployment workflows.',
-    badge: 'GIT',
+    desc: 'Managing source code, version control and collaborating on software projects.',
+    badge: 'TOOLS',
+    level: 'CORE',
   },
   {
-    icon: <Fingerprint size={24} />,
-    title: 'Problem Solving',
-    desc: 'Analytical thinking and logical problem-solving through coding practice.',
-    badge: 'DSA',
+    icon: <Database size={24} />,
+    title: 'DBMS / SQL',
+    desc: 'Learning database concepts, relational data and SQL fundamentals.',
+    badge: 'DATABASE',
+    level: 'LEARNING',
+  },
+  {
+    icon: <Trophy size={24} />,
+    title: 'SIH 2025',
+    desc: 'Participated in Smart India Hackathon 2025 with a focus on teamwork and innovative problem solving.',
+    badge: 'ACHIEVEMENT',
+    level: '2025',
   },
   {
     icon: <Layers size={24} />,
-    title: 'Project Development',
-    desc: 'Building portfolio projects and real-world web applications.',
-    badge: 'BUILD',
-  },
-  {
-    icon: <ChevronRight size={24} />,
-    title: 'Software Engineering',
-    desc: 'Focused on becoming a professional full-stack software engineer.',
-    badge: 'GOAL',
+    title: 'Problem Solving',
+    desc: 'Developing logical thinking through coding practice, projects and technical problem solving.',
+    badge: 'DSA',
+    level: 'GROWING',
   },
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="relative py-28 overflow-hidden">
-      <div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(180deg, var(--dark-surface) 0%, var(--dark-bg) 100%)' }}
-      />
-      <div className="absolute inset-0 cyber-grid opacity-20" />
+    <section
+      id="features"
+      className="relative py-28 overflow-hidden bg-[#07090d]"
+    >
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-20 reveal">
-          <div className="cyber-badge inline-block mb-4">05 // SKILLS</div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0,140,255,0.35) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,140,255,0.35) 1px, transparent 1px)
+            `,
+            backgroundSize: '55px 55px',
+          }}
+        />
+
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px]" />
+
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px]" />
+
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent" />
+      </div>
+
+      {/* =====================================================
+          CONTENT
+      ===================================================== */}
+
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+        {/* =================================================
+            SECTION HEADER
+        ================================================= */}
+
+        <div className="text-center mb-16 reveal">
+
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-5 rounded-full border border-blue-500/25 bg-blue-500/[0.06]">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+
+            <span className="font-mono text-[10px] tracking-[0.2em] text-blue-300">
+              02 // TECHNICAL PROFILE
+            </span>
+          </div>
+
           <h2
-            className="font-orbitron font-black mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3.5rem)', color: 'var(--neon-blue)', textShadow: '0 0 20px rgba(0,212,255,0.4)' }}
+            className="font-orbitron font-black mb-5"
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              color: '#e0f2fe',
+              textShadow: '0 0 25px rgba(0,212,255,0.25)',
+            }}
           >
-            SKILLS & STRENGTHS
+            SKILLS{' '}
+            <span
+              style={{
+                color: 'transparent',
+                WebkitTextStroke: '1px rgba(34,211,238,0.8)',
+              }}
+            >
+              & STACK
+            </span>
           </h2>
-          <p className="max-w-2xl mx-auto" style={{ color: 'rgba(224,242,254,0.55)', fontSize: '1.05rem' }}>
-            My core skills, strengths and areas of continuous learning
+
+          <p
+            className="max-w-2xl mx-auto text-sm sm:text-base leading-7"
+            style={{ color: 'rgba(224,242,254,0.5)' }}
+          >
+            Technologies, tools and problem-solving skills I am using to
+            build, learn and grow as a software developer.
           </p>
-          <div className="neon-line max-w-xs mx-auto mt-4" />
+
+          <div className="neon-line max-w-xs mx-auto mt-6" />
         </div>
 
-        {/* Grid */}
+        {/* =================================================
+            TOP TECH STRIP
+        ================================================= */}
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+
+          <div className="group p-4 rounded-xl border border-white/[0.07] bg-white/[0.02] hover:border-blue-400/30 transition-all">
+            <div className="flex items-center gap-3">
+              <Code2 className="w-5 h-5 text-cyan-400" />
+
+              <div>
+                <div className="font-mono text-xs text-white">
+                  FRONTEND
+                </div>
+
+                <div className="font-mono text-[9px] text-gray-600 mt-1">
+                  REACT • TS • JS
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="group p-4 rounded-xl border border-white/[0.07] bg-white/[0.02] hover:border-blue-400/30 transition-all">
+            <div className="flex items-center gap-3">
+              <Terminal className="w-5 h-5 text-blue-400" />
+
+              <div>
+                <div className="font-mono text-xs text-white">
+                  PROGRAMMING
+                </div>
+
+                <div className="font-mono text-[9px] text-gray-600 mt-1">
+                  C • JAVA
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="group p-4 rounded-xl border border-white/[0.07] bg-white/[0.02] hover:border-blue-400/30 transition-all">
+            <div className="flex items-center gap-3">
+              <Database className="w-5 h-5 text-cyan-400" />
+
+              <div>
+                <div className="font-mono text-xs text-white">
+                  DATABASE
+                </div>
+
+                <div className="font-mono text-[9px] text-gray-600 mt-1">
+                  DBMS • SQL
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="group p-4 rounded-xl border border-white/[0.07] bg-white/[0.02] hover:border-blue-400/30 transition-all">
+            <div className="flex items-center gap-3">
+              <GitBranch className="w-5 h-5 text-blue-400" />
+
+              <div>
+                <div className="font-mono text-xs text-white">
+                  WORKFLOW
+                </div>
+
+                <div className="font-mono text-[9px] text-gray-600 mt-1">
+                  GIT • GITHUB
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* =================================================
+            SKILLS GRID
+        ================================================= */}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {FEATURES.map((f, i) => (
+
+          {SKILLS.map((skill, index) => (
             <div
-              key={f.title}
-              className="glass-card rounded-xl p-6 reveal group cursor-pointer relative overflow-hidden"
-              style={{ transitionDelay: `${(i % 4) * 0.1}s` }}
+              key={skill.title}
+              className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0b1017]/80 p-6 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-cyan-400/30"
+              style={{
+                transitionDelay: `${(index % 4) * 70}ms`,
+              }}
             >
-              {/* Top accent line */}
+
+              {/* Hover glow */}
               <div
-                className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                style={{ background: 'linear-gradient(90deg, transparent, var(--neon-cyan), transparent)', boxShadow: '0 0 8px var(--neon-cyan)' }}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  background:
+                    'radial-gradient(circle at 50% 0%, rgba(34,211,238,0.09), transparent 65%)',
+                }}
               />
 
-              {/* BG glow */}
+              {/* Top line */}
               <div
-                className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: 'radial-gradient(circle at 50% 0%, rgba(0,212,255,0.06), transparent 70%)' }}
+                className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background:
+                    'linear-gradient(90deg, transparent, #22d3ee, transparent)',
+                  boxShadow: '0 0 12px rgba(34,211,238,0.8)',
+                }}
               />
 
-              <div className="relative">
-                {/* Icon + badge row */}
-                <div className="flex items-start justify-between mb-4">
+              <div className="relative z-10">
+
+                {/* Icon + Badge */}
+                <div className="flex items-start justify-between mb-5">
+
                   <div
-                    className="w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                     style={{
-                      background: 'rgba(0,212,255,0.08)',
-                      border: '1px solid rgba(0,212,255,0.2)',
-                      color: 'var(--neon-cyan)',
+                      background: 'rgba(34,211,238,0.07)',
+                      border: '1px solid rgba(34,211,238,0.18)',
+                      color: '#22d3ee',
                     }}
                   >
-                    {f.icon}
+                    {skill.icon}
                   </div>
-                  <div className="cyber-badge text-xs" style={{ fontSize: '0.5rem' }}>{f.badge}</div>
+
+                  <span
+                    className="font-mono text-[8px] tracking-[0.15em] px-2 py-1 rounded-md"
+                    style={{
+                      color: '#67e8f9',
+                      background: 'rgba(34,211,238,0.06)',
+                      border: '1px solid rgba(34,211,238,0.12)',
+                    }}
+                  >
+                    {skill.badge}
+                  </span>
                 </div>
 
                 {/* Title */}
                 <h3
-                  className="font-orbitron font-bold text-sm mb-2"
+                  className="font-orbitron font-bold text-sm mb-3"
                   style={{ color: '#e0f2fe' }}
                 >
-                  {f.title}
+                  {skill.title}
                 </h3>
 
-                {/* Desc */}
+                {/* Description */}
                 <p
-                  className="text-xs leading-relaxed"
-                  style={{ color: 'rgba(224,242,254,0.5)', fontFamily: 'Rajdhani', lineHeight: '1.6' }}
+                  className="text-xs leading-relaxed min-h-[62px]"
+                  style={{
+                    color: 'rgba(224,242,254,0.48)',
+                    fontFamily: 'Rajdhani',
+                    lineHeight: '1.65',
+                  }}
                 >
-                  {f.desc}
+                  {skill.desc}
                 </p>
 
-                {/* Hover arrow */}
-                <div
-                  className="mt-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                  <span className="font-mono-tech text-xs" style={{ color: 'var(--neon-cyan)' }}>LEARN MORE</span>
-                  <ChevronRight size={12} style={{ color: 'var(--neon-cyan)' }} />
+                {/* Bottom status */}
+                <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+
+                  <span
+                    className="font-mono text-[8px] tracking-[0.18em]"
+                    style={{
+                      color:
+                        skill.level === 'CORE'
+                          ? '#22d3ee'
+                          : 'rgba(224,242,254,0.35)',
+                    }}
+                  >
+                    {skill.level}
+                  </span>
+
+                  <ArrowUpRight
+                    size={14}
+                    className="text-gray-700 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                  />
+
                 </div>
               </div>
             </div>
           ))}
+
         </div>
+
+        {/* =================================================
+            BOTTOM MESSAGE
+        ================================================= */}
+
+        <div className="mt-12 relative overflow-hidden rounded-2xl border border-blue-500/15 bg-blue-500/[0.025] p-6 sm:p-8">
+
+          <div className="absolute top-0 left-0 w-24 h-px bg-gradient-to-r from-cyan-400 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-24 h-px bg-gradient-to-l from-blue-400 to-transparent" />
+
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+
+            <div className="flex items-start gap-4">
+
+              <div className="w-10 h-10 shrink-0 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-cyan-400" />
+              </div>
+
+              <div>
+                <div className="font-mono text-xs text-cyan-400 tracking-widest mb-1">
+                  CURRENT STATUS
+                </div>
+
+                <h3 className="text-white font-bold text-base sm:text-lg">
+                  Always Learning. Always Building.
+                </h3>
+
+                <p className="text-gray-500 text-xs sm:text-sm mt-1">
+                  Continuously improving my technical skills through projects,
+                  coding and practical experience.
+                </p>
+              </div>
+
+            </div>
+
+            <div className="shrink-0 font-mono text-[9px] tracking-widest text-gray-600">
+              PUSHKAR.EXE // ACTIVE
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
   );
