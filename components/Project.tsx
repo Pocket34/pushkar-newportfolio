@@ -346,5 +346,6 @@ const Projects: React.FC = () => {
     </section>
   );
 };
+// Vercel deployment trigger
 
 export default Projects;
