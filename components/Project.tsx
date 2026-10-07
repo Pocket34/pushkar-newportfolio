@@ -21,7 +21,6 @@ const PROJECTS = [
     status: 'LIVE',
     statusType: 'live',
     github: 'https://github.com/Pocket34/pushkar-newportfolio',
-    demo: '/',
     projectUrl: '/',
     featured: true,
   },
@@ -37,7 +36,6 @@ const PROJECTS = [
     status: 'LIVE',
     statusType: 'live',
     github: '#',
-    demo: 'https://gurukul-ai-learning-vnfu.bolt.host/',
     projectUrl: 'https://gurukul-ai-learning-vnfu.bolt.host/',
     featured: false,
   },
@@ -53,7 +51,6 @@ const PROJECTS = [
     status: '2025',
     statusType: 'achievement',
     github: '#',
-    demo: '/SIH-2025.pdf',
     projectUrl: '/SIH-2025.pdf',
     featured: false,
   },
@@ -101,6 +98,7 @@ const Projects: React.FC = () => {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-4">
             <span className="w-10 h-[1px] bg-cyan-400" />
+
             <span className="text-cyan-400 text-xs tracking-[0.35em] font-mono">
               PROJECT_DATABASE
             </span>
@@ -144,7 +142,7 @@ const Projects: React.FC = () => {
                 ${project.featured ? 'lg:col-span-2' : ''}
               `}
             >
-              {/* Top line */}
+              {/* Top neon line */}
               <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
               {/* Header */}
@@ -185,7 +183,7 @@ const Projects: React.FC = () => {
                 {project.description}
               </p>
 
-              {/* Tech */}
+              {/* Technologies */}
               <div className="flex flex-wrap gap-2 mt-6">
                 {project.tech.map((tech) => (
                   <span
@@ -206,7 +204,7 @@ const Projects: React.FC = () => {
                 ))}
               </div>
 
-              {/* SIH PDF section */}
+              {/* SIH PDF */}
               {project.title === 'Smart India Hackathon 2025' && (
                 <div
                   className="
@@ -290,6 +288,7 @@ const Projects: React.FC = () => {
                         flex items-center justify-center
                         text-gray-700
                       "
+                      aria-hidden="true"
                     >
                       <Github size={16} />
                     </span>
@@ -346,6 +345,5 @@ const Projects: React.FC = () => {
     </section>
   );
 };
-// Vercel deployment trigger
 
 export default Projects;
