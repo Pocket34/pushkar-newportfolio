@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import Particles from './components/Particles';
 import Hero from './components/Hero';
@@ -16,16 +17,33 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
-  // Portfolio is rendered immediately.
-  const [loaded] = useState(true);
+  const [loaded, setLoaded] = useState(false);
 
   const mouseGlowRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
 
-  // =========================
-  // CUSTOM CURSOR
-  // =========================
+  /* =========================================
+     ALWAYS START PORTFOLIO FROM TOP
+  ========================================= */
+  useEffect(() => {
+    if (!loaded) return;
+
+    // Prevent browser from restoring an old scroll position
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant',
+    });
+  }, [loaded]);
+
+  /* =========================================
+     CUSTOM CURSOR
+  ========================================= */
   useEffect(() => {
     if (!loaded) return;
 
@@ -53,6 +71,7 @@ export default function App() {
       ringY += (dotY - ringY) * 0.15;
 
       dot.style.transform = `translate(${dotX - 4}px, ${dotY - 4}px)`;
+
       ring.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
 
       rafId = requestAnimationFrame(animate);
@@ -66,9 +85,9 @@ export default function App() {
     };
   }, [loaded]);
 
-  // =========================
-  // MOUSE GLOW
-  // =========================
+  /* =========================================
+     MOUSE GLOW
+  ========================================= */
   useEffect(() => {
     if (!loaded) return;
 
@@ -90,9 +109,9 @@ export default function App() {
     };
   }, [loaded]);
 
-  // =========================
-  // SCROLL REVEAL
-  // =========================
+  /* =========================================
+     SCROLL REVEAL
+  ========================================= */
   useEffect(() => {
     if (!loaded) return;
 
@@ -123,51 +142,67 @@ export default function App() {
     };
   }, [loaded]);
 
-  // =========================
-  // PORTFOLIO
-  // =========================
   return (
     <>
-      {/* Custom cursor */}
-      <div ref={cursorDotRef} className="cursor-dot" />
-      <div ref={cursorRingRef} className="cursor-ring" />
+      <LoadingScreen
+        onComplete={() => {
+          setLoaded(true);
+        }}
+      />
 
-      {/* Mouse glow */}
-      <div ref={mouseGlowRef} className="mouse-glow" />
+      {loaded && (
+        <>
+          {/* Custom cursor */}
+          <div
+            ref={cursorDotRef}
+            className="cursor-dot"
+          />
 
-      {/* Floating particles */}
-      <Particles />
+          <div
+            ref={cursorRingRef}
+            className="cursor-ring"
+          />
 
-      {/* Navigation */}
-      <Navbar />
+          {/* Mouse glow */}
+          <div
+            ref={mouseGlowRef}
+            className="mouse-glow"
+          />
 
-      {/* Main portfolio */}
-      <main>
-        <Hero />
+          {/* Background particles */}
+          <Particles />
 
-        <About />
+          {/* Navigation */}
+          <Navbar />
 
-        <Technologies />
+          {/* Main portfolio */}
+          <main>
+            <Hero />
 
-        <Statistics />
+            <About />
 
-        <Timeline />
+            <Technologies />
 
-        <Features />
+            <Statistics />
 
-        <Dashboard />
+            <Timeline />
 
-        <CreatorProfile />
+            <Features />
 
-        <Testimonials />
+            <Dashboard />
 
-        <Team />
+            <CreatorProfile />
 
-        <Contact />
-      </main>
+            <Testimonials />
 
-      {/* Footer */}
-      <Footer />
+            <Team />
+
+            <Contact />
+          </main>
+
+          <Footer />
+        </>
+      )}
     </>
   );
 }
