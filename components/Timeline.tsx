@@ -1,6 +1,6 @@
 const TIMELINE_EVENTS = [
   {
-    year: '2021',
+    year: '2020',
     title: '10th Completed',
     desc: 'Successfully completed Class 10 with 74.8% marks.',
     tag: 'ACADEMICS',
@@ -9,7 +9,7 @@ const TIMELINE_EVENTS = [
   },
 
   {
-    year: '2023',
+    year: '2022',
     title: '12th Completed',
     desc: 'Successfully completed Class 12 with 72.4% marks.',
     tag: 'ACADEMICS',
