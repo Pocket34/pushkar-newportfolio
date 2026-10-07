@@ -1,6 +1,6 @@
 const TIMELINE_EVENTS = [
   {
-    year: '2020',
+    year: '2021',
     title: '10th Completed',
     desc: 'Successfully completed Class 10 with 74.8% marks.',
     tag: 'ACADEMICS',
@@ -9,7 +9,7 @@ const TIMELINE_EVENTS = [
   },
 
   {
-    year: '2022',
+    year: '2023',
     title: '12th Completed',
     desc: 'Successfully completed Class 12 with 72.4% marks.',
     tag: 'ACADEMICS',
@@ -47,10 +47,8 @@ const TIMELINE_EVENTS = [
 
 export default function Timeline() {
   return (
-    <section
-      id="timeline"
-      className="relative py-28 overflow-hidden"
-    >
+    <section id="timeline" className="relative py-28 overflow-hidden">
+
       {/* Background */}
       <div
         className="absolute inset-0"
@@ -66,6 +64,7 @@ export default function Timeline() {
 
         {/* Header */}
         <div className="text-center mb-20 reveal">
+
           <div className="cyber-badge inline-block mb-4">
             04 // TIMELINE
           </div>
@@ -87,7 +86,7 @@ export default function Timeline() {
         {/* Timeline */}
         <div className="relative">
 
-          {/* Central spine - desktop */}
+          {/* Central spine */}
           <div
             className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px timeline-line hidden md:block"
           />
@@ -95,6 +94,7 @@ export default function Timeline() {
           <div className="space-y-12">
 
             {TIMELINE_EVENTS.map((event, i) => {
+
               const isLeft = i % 2 === 0;
 
               return (
@@ -103,16 +103,19 @@ export default function Timeline() {
                   className="relative grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center reveal"
                 >
 
-                  {/* =========================
-                      DESKTOP LEFT
-                  ========================= */}
+                  {/* LEFT CONTENT */}
                   <div
-  className="hidden md:block"
->
-                    
+                    className={
+                      isLeft
+                        ? 'md:text-right'
+                        : 'hidden md:block'
+                    }
+                  >
+
                     {isLeft && (
                       <div className="glass-card rounded-xl p-6 relative overflow-hidden group">
 
+                        {/* Hover line */}
                         <div
                           className="absolute top-0 right-0 w-0.5 h-full opacity-0 group-hover:opacity-100 transition-opacity"
                           style={{
@@ -120,6 +123,7 @@ export default function Timeline() {
                           }}
                         />
 
+                        {/* Tag */}
                         <div
                           className="cyber-badge mb-2 inline-block"
                           style={{
@@ -130,6 +134,7 @@ export default function Timeline() {
                           {event.tag}
                         </div>
 
+                        {/* Title */}
                         <h3
                           className="font-orbitron font-bold text-sm mb-2"
                           style={{
@@ -139,6 +144,7 @@ export default function Timeline() {
                           {event.title}
                         </h3>
 
+                        {/* Description */}
                         <p
                           className="text-sm mb-3 leading-relaxed"
                           style={{
@@ -149,6 +155,7 @@ export default function Timeline() {
                           {event.desc}
                         </p>
 
+                        {/* Items */}
                         <div className="flex flex-wrap gap-2 justify-end">
                           {event.items.map((item) => (
                             <span
@@ -164,14 +171,16 @@ export default function Timeline() {
                             </span>
                           ))}
                         </div>
+
                       </div>
                     )}
+
                   </div>
 
-                  {/* =========================
-                      DESKTOP YEAR MARKER
-                  ========================= */}
+
+                  {/* CENTER YEAR MARKER */}
                   <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center z-10">
+
                     <div
                       className="w-12 h-12 rounded-full flex items-center justify-center font-orbitron text-xs font-black"
                       style={{
@@ -183,12 +192,13 @@ export default function Timeline() {
                     >
                       {event.year.slice(2)}
                     </div>
+
                   </div>
 
-                  {/* =========================
-                      MOBILE YEAR
-                  ========================= */}
+
+                  {/* MOBILE YEAR BADGE */}
                   <div className="md:hidden flex items-center gap-3 mb-2">
+
                     <div
                       className="w-10 h-10 rounded-full flex items-center justify-center font-orbitron text-xs font-black flex-shrink-0"
                       style={{
@@ -208,11 +218,11 @@ export default function Timeline() {
                     >
                       {event.year}
                     </div>
+
                   </div>
 
-                  {/* =========================
-                      DESKTOP RIGHT
-                  ========================= */}
+
+                  {/* RIGHT CONTENT */}
                   <div
                     className={
                       !isLeft
@@ -220,6 +230,8 @@ export default function Timeline() {
                         : 'hidden md:block'
                     }
                   >
+
+                    {/* Right year label */}
                     {!isLeft && (
                       <div>
 
@@ -234,8 +246,10 @@ export default function Timeline() {
                           {event.year}
                         </div>
 
-                        <div className="glass-card rounded-xl p-6 relative overflow-hidden group">
+                        {/* Desktop Card */}
+                        <div className="hidden md:block glass-card rounded-xl p-6 relative overflow-hidden group">
 
+                          {/* Hover line */}
                           <div
                             className="absolute top-0 left-0 w-0.5 h-full opacity-0 group-hover:opacity-100 transition-opacity"
                             style={{
@@ -243,6 +257,7 @@ export default function Timeline() {
                             }}
                           />
 
+                          {/* Tag */}
                           <div
                             className="cyber-badge mb-2 inline-block"
                             style={{
@@ -253,6 +268,7 @@ export default function Timeline() {
                             {event.tag}
                           </div>
 
+                          {/* Title */}
                           <h3
                             className="font-orbitron font-bold text-sm mb-2"
                             style={{
@@ -262,6 +278,7 @@ export default function Timeline() {
                             {event.title}
                           </h3>
 
+                          {/* Description */}
                           <p
                             className="text-sm mb-3 leading-relaxed"
                             style={{
@@ -272,6 +289,7 @@ export default function Timeline() {
                             {event.desc}
                           </p>
 
+                          {/* Items */}
                           <div className="flex flex-wrap gap-2">
                             {event.items.map((item) => (
                               <span
@@ -289,10 +307,12 @@ export default function Timeline() {
                           </div>
 
                         </div>
+
                       </div>
                     )}
 
-                    {/* Desktop left year */}
+
+                    {/* Left year label */}
                     {isLeft && (
                       <div
                         className="font-orbitron text-4xl font-black hidden md:block text-left"
@@ -305,60 +325,61 @@ export default function Timeline() {
                         {event.year}
                       </div>
                     )}
-                  </div>
-
-                  {/* =========================
-                      MOBILE CARD
-                      ONE CARD ONLY PER EVENT
-                  ========================= */}
-                  <div className="md:hidden glass-card rounded-xl p-6 relative overflow-hidden">
-
-                    <div
-                      className="cyber-badge mb-2 inline-block"
-                      style={{
-                        color: event.color,
-                        borderColor: `${event.color}40`,
-                      }}
-                    >
-                      {event.tag}
-                    </div>
-
-                    <h3
-                      className="font-orbitron font-bold text-sm mb-2"
-                      style={{
-                        color: event.color,
-                      }}
-                    >
-                      {event.title}
-                    </h3>
-
-                    <p
-                      className="text-sm mb-3 leading-relaxed"
-                      style={{
-                        color: 'rgba(224,242,254,0.6)',
-                        fontFamily: 'Rajdhani',
-                      }}
-                    >
-                      {event.desc}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {event.items.map((item) => (
-                        <span
-                          key={item}
-                          className="font-mono-tech text-xs px-2 py-0.5"
-                          style={{
-                            background: `${event.color}10`,
-                            border: `1px solid ${event.color}30`,
-                            color: event.color,
-                          }}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
 
                   </div>
+
+
+                  {/* MOBILE CARD */}
+                  {!isLeft && (
+                    <div className="md:hidden glass-card rounded-xl p-6">
+
+                      <div
+                        className="cyber-badge mb-2 inline-block"
+                        style={{
+                          color: event.color,
+                          borderColor: `${event.color}40`,
+                        }}
+                      >
+                        {event.tag}
+                      </div>
+
+                      <h3
+                        className="font-orbitron font-bold text-sm mb-2"
+                        style={{
+                          color: event.color,
+                        }}
+                      >
+                        {event.title}
+                      </h3>
+
+                      <p
+                        className="text-sm mb-3 leading-relaxed"
+                        style={{
+                          color: 'rgba(224,242,254,0.6)',
+                          fontFamily: 'Rajdhani',
+                        }}
+                      >
+                        {event.desc}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {event.items.map((item) => (
+                          <span
+                            key={item}
+                            className="font-mono-tech text-xs px-2 py-0.5"
+                            style={{
+                              background: `${event.color}10`,
+                              border: `1px solid ${event.color}30`,
+                              color: event.color,
+                            }}
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+
+                    </div>
+                  )}
 
                 </div>
               );
@@ -369,4 +390,4 @@ export default function Timeline() {
       </div>
     </section>
   );
-}
+                        }
