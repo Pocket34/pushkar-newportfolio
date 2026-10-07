@@ -107,12 +107,9 @@ export default function Timeline() {
                       DESKTOP LEFT
                   ========================= */}
                   <div
-                    className={
-                      isLeft
-                        ? 'md:text-right'
-                        : 'hidden md:block'
-                    }
-                  >
+  className="hidden md:block"
+>
+                    
                     {isLeft && (
                       <div className="glass-card rounded-xl p-6 relative overflow-hidden group">
 
