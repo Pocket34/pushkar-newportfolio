@@ -62,7 +62,7 @@ export default function CreatorProfile() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center mb-20 reveal">
+        <div className="text-center mb-16 reveal">
           <div className="cyber-badge inline-block mb-4">
             ABOUT THE CREATOR
           </div>
@@ -94,8 +94,88 @@ export default function CreatorProfile() {
           <div className="neon-line max-w-xs mx-auto mt-4" />
         </div>
 
-        {/* Goals & Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        {/* Profile + Goals */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+
+          {/* Profile Photo */}
+          <div className="reveal-left glass-card rounded-xl p-6 relative overflow-hidden">
+            <div
+              className="absolute top-0 left-0 right-0 h-[2px]"
+              style={{
+                background:
+                  'linear-gradient(90deg, transparent, var(--neon-cyan), transparent)',
+                boxShadow: '0 0 12px var(--neon-cyan)',
+              }}
+            />
+
+            <div className="relative mx-auto w-full max-w-sm">
+
+              {/* Neon frame */}
+              <div
+                className="absolute -inset-1 rounded-2xl opacity-70"
+                style={{
+                  background:
+                    'linear-gradient(135deg, var(--neon-cyan), transparent 45%, var(--neon-blue))',
+                  filter: 'blur(5px)',
+                }}
+              />
+
+              <div className="relative rounded-2xl overflow-hidden border border-cyan-400/40 bg-black">
+                <img
+                  src="/profile.jpg"
+                  alt="Pushkar Gupta"
+                  className="w-full aspect-[4/5] object-cover object-center"
+                />
+
+                {/* Image overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      'linear-gradient(180deg, transparent 65%, rgba(0,10,20,0.75) 100%)',
+                  }}
+                />
+
+                {/* Scanline */}
+                <div
+                  className="absolute left-0 right-0 top-1/2 h-px pointer-events-none"
+                  style={{
+                    background: 'rgba(0,255,240,0.5)',
+                    boxShadow: '0 0 8px rgba(0,255,240,0.7)',
+                  }}
+                />
+              </div>
+
+              {/* Corner markers */}
+              <div className="absolute -top-2 -left-2 w-7 h-7 border-l-2 border-t-2 border-cyan-400" />
+              <div className="absolute -top-2 -right-2 w-7 h-7 border-r-2 border-t-2 border-cyan-400" />
+              <div className="absolute -bottom-2 -left-2 w-7 h-7 border-l-2 border-b-2 border-cyan-400" />
+              <div className="absolute -bottom-2 -right-2 w-7 h-7 border-r-2 border-b-2 border-cyan-400" />
+            </div>
+
+            <div className="text-center mt-6">
+              <div
+                className="font-orbitron font-black text-xl"
+                style={{
+                  color: 'var(--neon-cyan)',
+                  textShadow: '0 0 12px rgba(0,255,240,0.4)',
+                }}
+              >
+                PUSHKAR GUPTA
+              </div>
+
+              <div
+                className="font-mono text-xs mt-2 tracking-[0.2em]"
+                style={{ color: 'rgba(224,242,254,0.45)' }}
+              >
+                CSE STUDENT • DEVELOPER
+              </div>
+
+              <div className="cyber-badge inline-block mt-4">
+                AVAILABLE FOR OPPORTUNITIES
+              </div>
+            </div>
+          </div>
 
           {/* Project Goals */}
           <div className="reveal-left glass-card rounded-xl p-8 relative overflow-hidden">
@@ -127,7 +207,7 @@ export default function CreatorProfile() {
               </h3>
             </div>
 
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {[
                 'Build responsive and modern web applications',
                 'Improve problem-solving and development skills',
@@ -233,7 +313,6 @@ export default function CreatorProfile() {
               >
                 <div className="glass-card rounded-xl p-5 text-center relative overflow-hidden h-full">
 
-                  {/* Top accent */}
                   <div
                     className="absolute top-0 left-1/4 right-1/4 h-0.5"
                     style={{
@@ -274,7 +353,7 @@ export default function CreatorProfile() {
           </div>
         </div>
 
-        {/* Technologies Used */}
+        {/* Technologies */}
         <div className="reveal">
           <div className="glass-card rounded-xl p-8 relative overflow-hidden">
 
@@ -343,6 +422,7 @@ export default function CreatorProfile() {
                 scalable and user-friendly applications.
               </p>
             </div>
+
           </div>
         </div>
 
