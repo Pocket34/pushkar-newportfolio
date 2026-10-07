@@ -80,9 +80,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: 'var(--dark-bg)' }}
     >
-      {/* =========================================
-          ANIMATED GRADIENT BACKGROUND
-      ========================================= */}
+      {/* BACKGROUND GLOW */}
       <div
         className="absolute inset-0"
         style={{
@@ -91,15 +89,13 @@ export default function Hero() {
         }}
       />
 
-      {/* Grid */}
+      {/* GRID */}
       <div className="absolute inset-0 cyber-grid" />
 
-      {/* Scan line */}
+      {/* SCAN LINE */}
       <div className="absolute inset-0 scanline pointer-events-none" />
 
-      {/* =========================================
-          HORIZONTAL NEON LINES
-      ========================================= */}
+      {/* HORIZONTAL NEON LINES */}
       {[15, 35, 65, 85].map((pct) => (
         <div
           key={pct}
@@ -113,9 +109,7 @@ export default function Hero() {
         />
       ))}
 
-      {/* =========================================
-          DATA STREAMS
-      ========================================= */}
+      {/* DATA STREAMS */}
       {[5, 15, 85, 92].map((left, i) => (
         <div
           key={i}
@@ -130,17 +124,26 @@ export default function Hero() {
         </div>
       ))}
 
-      {/* =========================================
+      {/* =========================
           MAIN CONTENT
-      ========================================= */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-        {/* =====================================
-            LEFT: TEXT CONTENT
-        ===================================== */}
+      ========================= */}
+      <div
+        className="
+          relative z-10 w-full max-w-7xl mx-auto
+          px-5 sm:px-6 lg:px-8
+          grid grid-cols-1 lg:grid-cols-2
+          gap-10 lg:gap-12
+          items-center
+          pt-24 lg:pt-20
+          pb-20
+        "
+      >
+        {/* =========================
+            LEFT — TEXT
+        ========================= */}
         <div className="text-center lg:text-left">
 
-          {/* Badge */}
+          {/* BADGE */}
           <div className="inline-flex items-center gap-2 mb-6">
             <div
               className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"
@@ -161,11 +164,9 @@ export default function Hero() {
             />
           </div>
 
-          {/* =================================
-              MAIN TITLE
-          ================================= */}
+          {/* TITLE */}
           <h1
-            className="font-orbitron font-black mb-4 leading-none"
+            className="font-orbitron font-black mb-5 leading-none"
             style={{
               fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
             }}
@@ -202,9 +203,7 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* =================================
-              TYPING ANIMATION
-          ================================= */}
+          {/* TYPING */}
           <div className="mb-6 h-8 flex items-center justify-center lg:justify-start">
             <span
               className="font-mono-tech text-sm md:text-base"
@@ -226,11 +225,15 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* =================================
-              SUBTITLE
-          ================================= */}
+          {/* DESCRIPTION */}
           <p
-            className="text-base md:text-lg mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            className="
+              text-base md:text-lg
+              mb-8 lg:mb-10
+              max-w-xl
+              mx-auto lg:mx-0
+              leading-relaxed
+            "
             style={{
               color: 'rgba(224,242,254,0.6)',
               fontFamily: 'Rajdhani, sans-serif',
@@ -243,9 +246,7 @@ export default function Hero() {
             to create impactful solutions.
           </p>
 
-          {/* =================================
-              BUTTONS — FIXED
-          ================================= */}
+          {/* BUTTONS */}
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
 
             <button
@@ -268,10 +269,14 @@ export default function Hero() {
 
           </div>
 
-          {/* =================================
-              STATS
-          ================================= */}
-          <div className="flex gap-8 mt-10 justify-center lg:justify-start">
+          {/* STATS */}
+          <div
+            className="
+              flex gap-8
+              mt-10
+              justify-center lg:justify-start
+            "
+          >
             {[
               { v: '2+', l: 'PROJECTS' },
               { v: 'SIH', l: 'HACKATHON' },
@@ -302,12 +307,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* =====================================
-            RIGHT: ROBOT
-        ===================================== */}
-        <div className="flex items-center justify-center relative">
+        {/* =========================
+            RIGHT — ROBOT
+            HIDDEN ON MOBILE
+        ========================= */}
+        <div className="hidden lg:flex items-center justify-center relative">
 
-          {/* Orbital rings */}
+          {/* ORBITAL RINGS */}
           {[1, 2, 3].map((i) => (
             <div
               key={i}
@@ -323,7 +329,7 @@ export default function Hero() {
             />
           ))}
 
-          {/* Pulse rings */}
+          {/* PULSE RINGS */}
           {[1, 2].map((i) => (
             <div
               key={i}
@@ -339,9 +345,7 @@ export default function Hero() {
             />
           ))}
 
-          {/* =================================
-              ROBOT CONTAINER
-          ================================= */}
+          {/* ROBOT */}
           <div
             className="relative float-animation"
             style={{
@@ -349,8 +353,7 @@ export default function Hero() {
               height: '420px',
             }}
           >
-
-            {/* Glow base */}
+            {/* GLOW BASE */}
             <div
               className="absolute inset-x-0 bottom-0 h-24 rounded-full blur-3xl"
               style={{
@@ -358,9 +361,6 @@ export default function Hero() {
               }}
             />
 
-            {/* =================================
-                SVG ROBOT
-            ================================= */}
             <svg
               viewBox="0 0 320 420"
               fill="none"
@@ -369,8 +369,6 @@ export default function Hero() {
               aria-label="Futuristic humanoid robot"
             >
               <defs>
-
-                {/* Body gradient */}
                 <linearGradient
                   id="bodyGrad"
                   x1="0%"
@@ -383,7 +381,6 @@ export default function Hero() {
                   <stop offset="100%" stopColor="#000d20" />
                 </linearGradient>
 
-                {/* Face gradient */}
                 <linearGradient
                   id="faceGrad"
                   x1="0%"
@@ -395,7 +392,6 @@ export default function Hero() {
                   <stop offset="100%" stopColor="#001525" />
                 </linearGradient>
 
-                {/* Glow gradient */}
                 <linearGradient
                   id="glowGrad"
                   x1="0%"
@@ -415,7 +411,6 @@ export default function Hero() {
                   />
                 </linearGradient>
 
-                {/* Normal glow */}
                 <filter id="glow">
                   <feGaussianBlur
                     stdDeviation="3"
@@ -427,7 +422,6 @@ export default function Hero() {
                   </feMerge>
                 </filter>
 
-                {/* Strong glow */}
                 <filter id="strongGlow">
                   <feGaussianBlur
                     stdDeviation="6"
@@ -438,12 +432,9 @@ export default function Hero() {
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
-
               </defs>
 
-              {/* =========================
-                  NECK
-              ========================= */}
+              {/* NECK */}
               <rect
                 x="144"
                 y="148"
@@ -475,9 +466,7 @@ export default function Hero() {
                 opacity="0.4"
               />
 
-              {/* =========================
-                  HEAD
-              ========================= */}
+              {/* HEAD */}
               <rect
                 x="100"
                 y="60"
@@ -489,7 +478,6 @@ export default function Hero() {
                 strokeWidth="1"
               />
 
-              {/* Head side panels */}
               <rect
                 x="88"
                 y="75"
@@ -512,7 +500,6 @@ export default function Hero() {
                 strokeWidth="0.5"
               />
 
-              {/* Ear details */}
               <circle
                 cx="92"
                 cy="95"
@@ -531,7 +518,7 @@ export default function Hero() {
                 opacity="0.8"
               />
 
-              {/* Visor */}
+              {/* VISOR */}
               <rect
                 x="108"
                 y="78"
@@ -553,7 +540,7 @@ export default function Hero() {
                 opacity="0.1"
               />
 
-              {/* Left eye */}
+              {/* LEFT EYE */}
               <ellipse
                 cx="143"
                 cy="96"
@@ -588,7 +575,7 @@ export default function Hero() {
                 fill="white"
               />
 
-              {/* Right eye */}
+              {/* RIGHT EYE */}
               <ellipse
                 cx="177"
                 cy="96"
@@ -623,7 +610,7 @@ export default function Hero() {
                 fill="white"
               />
 
-              {/* Visor scan line */}
+              {/* VISOR SCAN */}
               <rect
                 x="110"
                 y="93"
@@ -634,7 +621,7 @@ export default function Hero() {
                 filter="url(#glow)"
               />
 
-              {/* Lower face */}
+              {/* LOWER FACE */}
               <rect
                 x="118"
                 y="122"
@@ -646,7 +633,6 @@ export default function Hero() {
                 strokeWidth="0.5"
               />
 
-              {/* Mouth / speaker grille */}
               {[0, 1, 2, 3, 4].map((i) => (
                 <rect
                   key={i}
@@ -660,7 +646,7 @@ export default function Hero() {
                 />
               ))}
 
-              {/* Head top */}
+              {/* HEAD TOP */}
               <rect
                 x="135"
                 y="60"
@@ -682,9 +668,7 @@ export default function Hero() {
                 opacity="0.5"
               />
 
-              {/* =========================
-                  TORSO
-              ========================= */}
+              {/* TORSO */}
               <rect
                 x="86"
                 y="176"
@@ -696,7 +680,6 @@ export default function Hero() {
                 strokeWidth="1"
               />
 
-              {/* Chest center */}
               <rect
                 x="120"
                 y="186"
@@ -708,7 +691,7 @@ export default function Hero() {
                 strokeWidth="0.5"
               />
 
-              {/* Arc reactor */}
+              {/* ARC REACTOR */}
               <circle
                 cx="160"
                 cy="218"
@@ -750,7 +733,7 @@ export default function Hero() {
                 fill="#00fff0"
               />
 
-              {/* Chest lines */}
+              {/* CHEST LINES */}
               {[0, 1, 2].map((i) => (
                 <rect
                   key={i}
@@ -777,7 +760,7 @@ export default function Hero() {
                 />
               ))}
 
-              {/* Chest vent slats */}
+              {/* CHEST VENTS */}
               {[0, 1, 2].map((i) => (
                 <rect
                   key={i}
@@ -793,9 +776,7 @@ export default function Hero() {
                 />
               ))}
 
-              {/* =========================
-                  SHOULDERS
-              ========================= */}
+              {/* SHOULDERS */}
               <ellipse
                 cx="76"
                 cy="192"
@@ -834,9 +815,7 @@ export default function Hero() {
                 opacity="0.6"
               />
 
-              {/* =========================
-                  LEFT ARM
-              ========================= */}
+              {/* LEFT ARM */}
               <rect
                 x="44"
                 y="210"
@@ -878,7 +857,7 @@ export default function Hero() {
                 opacity="0.2"
               />
 
-              {/* Left forearm */}
+              {/* LEFT FOREARM */}
               <rect
                 x="42"
                 y="296"
@@ -920,7 +899,7 @@ export default function Hero() {
                 opacity="0.3"
               />
 
-              {/* Left hand */}
+              {/* LEFT HAND */}
               <rect
                 x="44"
                 y="358"
@@ -946,9 +925,7 @@ export default function Hero() {
                 />
               ))}
 
-              {/* =========================
-                  RIGHT ARM
-              ========================= */}
+              {/* RIGHT ARM */}
               <rect
                 x="242"
                 y="210"
@@ -990,7 +967,7 @@ export default function Hero() {
                 opacity="0.2"
               />
 
-              {/* Right forearm */}
+              {/* RIGHT FOREARM */}
               <rect
                 x="240"
                 y="296"
@@ -1032,7 +1009,7 @@ export default function Hero() {
                 opacity="0.3"
               />
 
-              {/* Right hand */}
+              {/* RIGHT HAND */}
               <rect
                 x="240"
                 y="358"
@@ -1058,9 +1035,7 @@ export default function Hero() {
                 />
               ))}
 
-              {/* =========================
-                  LOWER BODY
-              ========================= */}
+              {/* LOWER BODY */}
               <rect
                 x="100"
                 y="296"
@@ -1094,7 +1069,7 @@ export default function Hero() {
                 strokeWidth="0.5"
               />
 
-              {/* Hip details */}
+              {/* HIP DETAILS */}
               <rect
                 x="106"
                 y="302"
@@ -1115,9 +1090,7 @@ export default function Hero() {
                 opacity="0.4"
               />
 
-              {/* =========================
-                  LEGS
-              ========================= */}
+              {/* LEGS */}
               <rect
                 x="106"
                 y="366"
@@ -1140,7 +1113,6 @@ export default function Hero() {
                 strokeWidth="0.8"
               />
 
-              {/* Leg details */}
               {[0, 1, 2].map((i) => (
                 <rect
                   key={i}
@@ -1167,7 +1139,7 @@ export default function Hero() {
                 />
               ))}
 
-              {/* Knee joints */}
+              {/* KNEES */}
               <circle
                 cx="132"
                 cy="370"
@@ -1204,9 +1176,7 @@ export default function Hero() {
                 opacity="0.6"
               />
 
-              {/* =========================
-                  ENERGY LINES
-              ========================= */}
+              {/* ENERGY LINES */}
               <path
                 d="M160 176 L160 295"
                 stroke="#00d4ff"
@@ -1231,7 +1201,6 @@ export default function Hero() {
                 strokeDasharray="4 8"
               />
 
-              {/* Glowing accent */}
               <circle
                 cx="160"
                 cy="218"
@@ -1243,9 +1212,7 @@ export default function Hero() {
               />
             </svg>
 
-            {/* =================================
-                STATUS HUD
-            ================================= */}
+            {/* STATUS HUD */}
             <div
               className="absolute top-4 right-0 text-right"
               style={{
@@ -1267,7 +1234,7 @@ export default function Hero() {
               <div>VERSION 1.0</div>
             </div>
 
-            {/* Bottom HUD */}
+            {/* BOTTOM HUD */}
             <div
               className="absolute bottom-10 left-0 text-left"
               style={{
@@ -1290,9 +1257,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* =========================================
-          SCROLL INDICATOR
-      ========================================= */}
+      {/* SCROLL INDICATOR */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span
           className="font-orbitron text-xs tracking-widest"
